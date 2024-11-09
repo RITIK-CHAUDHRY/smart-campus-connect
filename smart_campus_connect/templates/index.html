@@ -1,0 +1,51 @@
+
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<h1>Welcome to Smart Campus Connect</h1>
+<p>Connect, collaborate, and stay informed with your campus community.</p>
+
+{% if current_user.is_authenticated %}
+    <h2>Quick Links</h2>
+    <ul>
+        <li><a href="{{ url_for('announcements') }}">View Announcements</a></li>
+        <li><a href="{{ url_for('events') }}">View Events</a></li>
+        <li><a href="{{ url_for('resources') }}">Resource Sharing</a></li>
+        <li><a href="{{ url_for('messages') }}">Messages</a></li>
+    </ul>
+
+    <h2>Latest Announcements</h2>
+    <div class="latest-announcements">
+        {% for announcement in latest_announcements %}
+        <div class="announcement">
+            <h3>{{ announcement.title }}</h3>
+            <p>{{ announcement.content[:100] }}{% if announcement.content|length > 100 %}...{% endif %}</p>
+            <p class="announcement-meta">
+                Posted by {{ announcement.author.name }} on {{ announcement.date_posted.strftime('%Y-%m-%d %H:%M') }}
+            </p>
+        </div>
+        {% else %}
+        <p>No announcements yet.</p>
+        {% endfor %}
+    </div>
+
+    <h2>Upcoming Events</h2>
+    <div class="upcoming-events">
+        {% for event in upcoming_events %}
+        <div class="event">
+            <h3>{{ event.title }}</h3>
+            <p>{{ event.description[:100] }}{% if event.description|length > 100 %}...{% endif %}</p>
+            <p><strong>Date:</strong> {{ event.date.strftime('%Y-%m-%d %H:%M') }}</p>
+            <p><strong>Location:</strong> {{ event.location }}</p>
+            <a href="{{ url_for('events') }}#event-{{ event.id }}">View Details</a>
+        </div>
+        {% else %}
+        <p>No upcoming events.</p>
+        {% endfor %}
+    </div>
+{% else %}
+    <p>Please <a href="{{ url_for('login') }}">login</a> or <a href="{{ url_for('signup') }}">sign up</a> to access all features.</p>
+{% endif %}
+{% endblock %}

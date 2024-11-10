@@ -1,0 +1,21 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Announcements</h1>
+    {% if current_user.is_admin %}
+        <a href="{{ url_for('create_announcement') }}" class="button">Create New Announcement</a>
+    {% endif %}
+    {% if announcements %}
+        <ul class="announcements-list">
+            {% for announcement in announcements %}
+                <li>
+                    <h2><a href="{{ url_for('announcement_detail', announcement_id=announcement._id) }}">{{ announcement.title }}</a></h2>
+                    <p>Posted by {{ announcement.author }} on {{ announcement.created_at.strftime('%Y-%m-%d %H:%M') }}</p>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No announcements available.</p>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,23 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Events</h1>
+    {% if current_user.is_admin %}
+        <a href="{{ url_for('create_event') }}" class="button">Create New Event</a>
+    {% endif %}
+    {% if events %}
+        <ul class="events-list">
+            {% for event in events %}
+                <li>
+                    <h2><a href="{{ url_for('event_detail', event_id=event._id) }}">{{ event.title }}</a></h2>
+                    <p>{{ event.start_time.strftime('%Y-%m-%d %H:%M') }} - {{ event.end_time.strftime('%Y-%m-%d %H:%M') }}</p>
+                    <p>Location: {{ event.location }}</p>
+                    <p>Organizer: {{ event.organizer }}</p>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No events available.</p>
+    {% endif %}
+{% endblock %}

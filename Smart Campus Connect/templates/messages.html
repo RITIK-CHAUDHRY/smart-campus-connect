@@ -1,0 +1,21 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Messages</h1>
+    {% if conversations %}
+        <ul class="conversations-list">
+            {% for conversation in conversations %}
+                <li>
+                    <a href="{{ url_for('conversation', recipient=conversation['_id']) }}">
+                        <strong>{{ conversation['_id'] }}</strong>
+                        <p>{{ conversation['last_message']['content'][:50] }}...</p>
+                        <small>{{ conversation['last_message']['timestamp'].strftime('%Y-%m-%d %H:%M') }}</small>
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No conversations yet.</p>
+    {% endif %}
+{% endblock %}

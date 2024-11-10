@@ -1,0 +1,13 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>{{ resource.title }}</h1>
+    <div class="resource-details">
+        <p><strong>Uploaded by:</strong> {{ resource.uploaded_by }}</p>
+        <p><strong>Upload Date:</strong> {{ resource.upload_date.strftime('%Y-%m-%d %H:%M') }}</p>
+        <p><strong>Description:</strong> {{ resource.description }}</p>
+    </div>
+    <a href="{{ url_for('download_resource', resource_id=resource._id) }}" class="button">Download</a>
+    <a href="{{ url_for('resources') }}" class="button">Back to Resources</a>
+{% endblock %}

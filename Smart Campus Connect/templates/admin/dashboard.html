@@ -1,0 +1,14 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Admin Dashboard</h1>
+    <nav class="admin-nav">
+        <ul>
+            <li><a href="{{ url_for('admin_users') }}">Manage Users</a></li>
+            <li><a href="{{ url_for('announcements') }}">Manage Announcements</a></li>
+            <li><a href="{{ url_for('events') }}">Manage Events</a></li>
+            <li><a href="{{ url_for('resources') }}">Manage Resources</a></li>
+        </ul>
+    </nav>
+{% endblock %}

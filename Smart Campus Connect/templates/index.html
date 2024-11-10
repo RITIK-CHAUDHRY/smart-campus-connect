@@ -1,0 +1,20 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Welcome to Smart App Connect</h1>
+    <p>Smart App Connect is a web application designed for MNNIT college students to stay connected and informed.</p>
+    
+    {% if current_user.is_authenticated %}
+        <h2>Hello, {{ current_user.username }}!</h2>
+        <p>What would you like to do today?</p>
+        <ul>
+            <li><a href="{{ url_for('profile') }}">View your profile</a></li>
+            <li><a href="#">View announcements</a></li>
+            <li><a href="#">Check upcoming events</a></li>
+            <li><a href="#">Access resources</a></li>
+        </ul>
+    {% else %}
+        <p>Please <a href="{{ url_for('login') }}">log in</a> or <a href="{{ url_for('register') }}">register</a> to access all features.</p>
+    {% endif %}
+{% endblock %}

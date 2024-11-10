@@ -1,0 +1,11 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>{{ announcement.title }}</h1>
+    <p class="announcement-meta">Posted by {{ announcement.author }} on {{ announcement.created_at.strftime('%Y-%m-%d %H:%M') }}</p>
+    <div class="announcement-content">
+        {{ announcement.content }}
+    </div>
+    <a href="{{ url_for('announcements') }}" class="button">Back to Announcements</a>
+{% endblock %}

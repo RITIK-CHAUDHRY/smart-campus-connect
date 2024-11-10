@@ -1,0 +1,20 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Conversation with {{ recipient }}</h1>
+    <div class="messages-container">
+        {% for message in messages %}
+            <div class="message {% if message.sender == current_user.username %}sent{% else %}received{% endif %}">
+                <p>{{ message.content }}</p>
+                <small>{{ message.timestamp.strftime('%Y-%m-%d %H:%M') }}</small>
+            </div>
+        {% endfor %}
+    </div>
+    <form method="POST" action="{{ url_for('send_message') }}" class="send-message-form">
+        <input type="hidden" name="recipient" value="{{ recipient }}">
+        <textarea name="content" placeholder="Type your message here" required></textarea>
+        <button type="submit">Send</button>
+    </form>
+    <a href="{{ url_for('messages') }}" class="button">Back to Messages</a>
+{% endblock %}

@@ -1,0 +1,16 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>User Profile</h1>
+    <div class="profile-info">
+        <p><strong>Username:</strong> {{ current_user.username }}</p>
+        <p><strong>Email:</strong> {{ current_user.email }}</p>
+        <p><strong>Registration Number:</strong> {{ current_user.reg_number }}</p>
+        <p><strong>Department:</strong> {{ current_user.department }}</p>
+        <p><strong>Year:</strong> {{ current_user.year }}</p>
+    </div>
+    <div class="profile-actions">
+        <a href="#" class="button">Edit Profile</a>
+    </div>
+{% endblock %}

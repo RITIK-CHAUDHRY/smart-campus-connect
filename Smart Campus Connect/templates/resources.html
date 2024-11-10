@@ -1,0 +1,20 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Resources</h1>
+    <a href="{{ url_for('upload_resource') }}" class="button">Upload Resource</a>
+    {% if resources %}
+        <ul class="resources-list">
+            {% for resource in resources %}
+                <li>
+                    <h2><a href="{{ url_for('resource_detail', resource_id=resource._id) }}">{{ resource.title }}</a></h2>
+                    <p>Uploaded by {{ resource.uploaded_by }} on {{ resource.upload_date.strftime('%Y-%m-%d %H:%M') }}</p>
+                    <a href="{{ url_for('download_resource', resource_id=resource._id) }}" class="button">Download</a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No resources available.</p>
+    {% endif %}
+{% endblock %}

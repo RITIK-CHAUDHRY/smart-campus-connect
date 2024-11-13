@@ -12,4 +12,9 @@ I am Smart campus connect and i am a campus communication and resource-sharing p
  - __Notifications:__ Users get notifications for new announcements, upcoming events, and received messages
 
   ## Techstack Used:
-  
+  - HTML
+  - CSS
+  - Javascript
+  - Python
+  - Flask
+  - -MongoDB
